@@ -1,6 +1,3 @@
-# Oodle.NET
-A .NET wrapper for Oodle
-
 <div align="center">
 
 # Oodle.NET
