@@ -19,11 +19,6 @@ var decompressedBuffer = new byte[decompressedSize];
 var result = oodle.Decompress(compressedBuffer, compressedBuffer.Length, decompressedBuffer, decompressedSize, OodleLZ_FuzzSafe.No, OodleLZ_CheckCRC.No, OodleLZ_Verbosity.None, 0L, 0L, 0L, 0L, 0L, 0L, OodleLZ_Decode_ThreadPhase.Unthreaded);
 ```
 
-### Info
-
-The `UsmapOptions.OodlePath` is only required for loading oodle compressed usmap files.  
-Oodle decompression has been tested on windows and linux (x64).
-
 ### NuGet
 
 ```md
