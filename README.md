@@ -8,11 +8,29 @@ A .NET wrapper for Oodle
 
 </div>
 
-## NuGet
+## Example Usage
 
-    Install-Package Oodle.NET
+```cs
+using Oodle.NET;
 
-## Usage
+using var oodle = new OodleCompressor(@"C:\Test\oo2core_8_win64.dll");
+var compressedBuffer = System.IO.File.ReadAllBytes(@"C:\Test\Example.bin");
+var decompressedBuffer = new byte[decompressedSize];
+var result = oodle.Decompress(compressedBuffer, compressedBuffer.Length, decompressedBuffer, decompressedSize, OodleLZ_FuzzSafe.No, OodleLZ_CheckCRC.No, OodleLZ_Verbosity.None, 0L, 0L, 0L, 0L, 0L, 0L, OodleLZ_Decode_ThreadPhase.Unthreaded);
+```
 
-Please take a look into [this](https://github.com/NotOfficer/Oodle.NET/blob/master/src/Oodle.NET.Tests/OodleCompressorTests.cs#L18).  
-A detailed documentation isn't available right now.
+### Info
+
+The `UsmapOptions.OodlePath` is only required for loading oodle compressed usmap files.  
+Oodle decompression has been tested on windows and linux (x64).
+
+### NuGet
+
+```md
+Install-Package Oodle.NET
+```
+
+### Contribute
+
+If you can provide any help, may it only be spell checking please contribute!  
+I am open for any contribution.
