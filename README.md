@@ -14,5 +14,5 @@ A .NET wrapper for Oodle
 
 ## Usage
 
-Please take a look into [this](https://github.com/NotOfficer/Oodle.NET/blob/master/src/Oodle.NET.Tests/OodleCompressorTests.cs#L18).
+Please take a look into [this](https://github.com/NotOfficer/Oodle.NET/blob/master/src/Oodle.NET.Tests/OodleCompressorTests.cs#L18).  
 A detailed documentation isn't available right now.
