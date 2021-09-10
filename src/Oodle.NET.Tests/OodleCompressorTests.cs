@@ -27,11 +27,11 @@ namespace Oodle.NET.Tests
 			Assert.NotEqual(0L, memorySizeNeeded);
 
 			var compressedBuffer = new byte[memorySizeNeeded];
-			var compressedCount = _oodle.Compress(compressor, randomStringBuffer, randomStringBuffer.Length, compressedBuffer, OodleLZ_CompressionLevel.Normal, 0L, 0L, 0L, 0L, 0L);
+			var compressedCount = _oodle.CompressBuffer(compressor, randomStringBuffer, randomStringBuffer.Length, compressedBuffer, OodleLZ_CompressionLevel.Normal, 0L, 0L, 0L, 0L, 0L);
 			Assert.NotEqual(0L, compressedCount);
 
 			var decompressedBuffer = new byte[randomStringBuffer.Length];
-			var decompressedCount = _oodle.Decompress(compressedBuffer, compressedCount, decompressedBuffer, decompressedBuffer.Length, OodleLZ_FuzzSafe.No, OodleLZ_CheckCRC.No, OodleLZ_Verbosity.None, 0L, 0L, 0L, 0L, 0L, 0L, OodleLZ_Decode_ThreadPhase.Unthreaded);
+			var decompressedCount = _oodle.DecompressBuffer(compressedBuffer, compressedCount, decompressedBuffer, decompressedBuffer.Length, OodleLZ_FuzzSafe.No, OodleLZ_CheckCRC.No, OodleLZ_Verbosity.None, 0L, 0L, 0L, 0L, 0L, 0L, OodleLZ_Decode_ThreadPhase.Unthreaded);
 			Assert.NotEqual(0L, decompressedCount);
 
 			var decompressedRandomString = encoding.GetString(decompressedBuffer);
