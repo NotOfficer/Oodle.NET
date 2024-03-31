@@ -13,10 +13,10 @@ A .NET wrapper for Oodle
 ```cs
 using Oodle.NET;
 
-using var oodle = new OodleCompressor(@"C:\Test\oo2core_8_win64.dll");
+using var oodle = new Oodle(@"C:\Test\oo2core_9_win64.dll");
 var compressedBuffer = System.IO.File.ReadAllBytes(@"C:\Test\Example.bin");
 var decompressedBuffer = new byte[decompressedSize];
-var result = oodle.DecompressBuffer(compressedBuffer, compressedBuffer.Length, decompressedBuffer, decompressedSize, OodleLZ_FuzzSafe.No, OodleLZ_CheckCRC.No, OodleLZ_Verbosity.None, 0L, 0L, 0L, 0L, 0L, 0L, OodleLZ_Decode_ThreadPhase.Unthreaded);
+var result = oodle.Decompress(compressedBuffer, decompressedBuffer);
 ```
 
 ### NuGet
