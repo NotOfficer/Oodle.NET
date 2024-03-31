@@ -11,7 +11,7 @@ A .NET wrapper for Oodle
 ## Example Usage
 
 ```cs
-using Oodle.NET;
+using OodleDotNet;
 
 using var oodle = new Oodle(@"C:\Test\oo2core_9_win64.dll");
 var compressedBuffer = System.IO.File.ReadAllBytes(@"C:\Test\Example.bin");
