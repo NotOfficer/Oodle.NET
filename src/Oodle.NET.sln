@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31112.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oodle.NET", "Oodle.NET\Oodle.NET.csproj", "{AFF75C15-8DFA-454A-B24B-09F19BE68559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oodle.NET", "Oodle.NET\Oodle.NET.csproj", "{AFF75C15-8DFA-454A-B24B-09F19BE68559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oodle.NET.Tests", "Oodle.NET.Tests\Oodle.NET.Tests.csproj", "{0482F51C-6992-49AD-90AC-A4689FA32C52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oodle.NET.Tests", "Oodle.NET.Tests\Oodle.NET.Tests.csproj", "{0482F51C-6992-49AD-90AC-A4689FA32C52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
