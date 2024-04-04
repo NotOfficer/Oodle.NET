@@ -6,31 +6,32 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+
+    <NeutralLanguage>en</NeutralLanguage>
     <Authors>NotOfficer</Authors>
     <Description>A .NET wrapper for Oodle</Description>
-    <Company>NotOfficer</Company>
-    <Copyright>Copyright (c) 2024 NotOfficer</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/NotOfficer/Oodle.NET</PackageProjectUrl>
+    <PackageTags>oodle, compression</PackageTags>
     <RepositoryUrl>https://github.com/NotOfficer/Oodle.NET</RepositoryUrl>
+    <Copyright>Copyright (c) 2024 NotOfficer</Copyright>
     <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageTags>oodle, decompress, compress</PackageTags>
-    <AssemblyVersion>2.0.1.0</AssemblyVersion>
-    <FileVersion>2.0.1.0</FileVersion>
-    <Version>2.0.1</Version>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
+    <FileVersion>2.0.2.0</FileVersion>
+    <Version>2.0.2</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <None Include="..\..\icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
