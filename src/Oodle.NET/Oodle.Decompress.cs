@@ -11,7 +11,7 @@ public unsafe partial class Oodle
 	/// <returns>
 	/// Size of compressed data written, or 0 for failure
 	/// </returns>
-	public delegate* unmanaged<void*, nint, void*, nint, OodleFuzzSafe, OodleCheckCRC, OodleVerbosity, void*, nint, void*, void*, void*, nint, OodleDecodeThreadPhase, nint> DecompressFunctionPointer { get; }
+	public delegate* unmanaged<void*, nint, void*, nint, OodleFuzzSafe, OodleCheckCrc, OodleVerbosity, void*, nint, void*, void*, void*, nint, OodleDecodeThreadPhase, nint> DecompressFunctionPointer { get; }
 
 	/// <inheritdoc cref="DecompressFunctionPointer" />
 	public nint Decompress(ReadOnlySpan<byte> source, Span<byte> dest)
@@ -22,7 +22,7 @@ public unsafe partial class Oodle
 			var sourceLen = (nint)source.Length;
 			var destLen = (nint)dest.Length;
 			return DecompressFunctionPointer(sourcePtr, sourceLen, destPtr, destLen,
-				OodleFuzzSafe.Yes, OodleCheckCRC.No, OodleVerbosity.None, null, 0, null, null, null, 0, OodleDecodeThreadPhase.Unthreaded);
+				OodleFuzzSafe.Yes, OodleCheckCrc.No, OodleVerbosity.None, null, 0, null, null, null, 0, OodleDecodeThreadPhase.Unthreaded);
 		}
 	}
 
