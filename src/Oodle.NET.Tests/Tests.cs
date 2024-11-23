@@ -1,18 +1,21 @@
-using System;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+using System.Diagnostics;
+using System.IO.Compression;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
-
-using Xunit;
 
 namespace OodleDotNet.Tests;
 
-public class Tests
+public class Tests : IAsyncLifetime
 {
-	private readonly Oodle _oodle = new(Path.Combine(
-		Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-		@"Libraries\oo2core_9_win64.dll"));
+	private string _filePath = null!;
+	private Oodle _oodle = null!;
+
+	public async Task InitializeAsync()
+	{
+		_filePath = await DownloadAsync();
+		_oodle = new Oodle(_filePath);
+	}
 
 	[Fact]
 	public void CompressAndDecompress()
@@ -36,18 +39,61 @@ public class Tests
 		Assert.True(randomStringBuffer.AsSpan().SequenceEqual(decompressedBuffer));
 	}
 
+	public Task DisposeAsync()
+	{
+		_oodle.Dispose();
+		File.Delete(_filePath);
+		return Task.CompletedTask;
+	}
+
 	private static string GetRandomString(int length)
 	{
-		const string chars = "0123456789ABCDEF";
-		var result = new string('\0', length);
-		var resultReadonlySpan = result.AsSpan();
-		var resultSpan = MemoryMarshal.CreateSpan(ref Unsafe.AsRef(in resultReadonlySpan.GetPinnableReference()), length);
+		const string pool = "0123456789ABCDEF";
+		return RandomNumberGenerator.GetString(pool, length);
+	}
 
-		for (var i = 0; i < resultSpan.Length; i++)
+	public static async Task<string> DownloadAsync()
+	{
+		if (!OperatingSystem.IsWindows() && !OperatingSystem.IsLinux())
 		{
-			resultSpan[i] = chars[Random.Shared.Next(chars.Length)];
+			throw new PlatformNotSupportedException("this test is not supported on the current platform");
 		}
 
-		return result;
+		const string baseUrl = "https://github.com/WorkingRobot/OodleUE/releases/download/2024-11-01-726/"; // 2.9.13
+		string url;
+		string entryName;
+
+		if (OperatingSystem.IsWindows())
+		{
+			url = baseUrl + "msvc.zip";
+			entryName = "bin/Release/oodle-data-shared.dll";
+		}
+		else if (OperatingSystem.IsLinux())
+		{
+			url = baseUrl + "gcc.zip";
+			entryName = "lib/Release/liboodle-data-shared.so";
+		}
+		else
+		{
+			throw new UnreachableException();
+		}
+
+		using var client = new HttpClient(new SocketsHttpHandler
+		{
+			UseProxy = false,
+			UseCookies = true,
+			AutomaticDecompression = DecompressionMethods.All
+		});
+		using var response = await client.GetAsync(url);
+		response.EnsureSuccessStatusCode();
+		await using var responseStream = await response.Content.ReadAsStreamAsync();
+		using var zip = new ZipArchive(responseStream, ZipArchiveMode.Read);
+		var entry = zip.GetEntry(entryName);
+		ArgumentNullException.ThrowIfNull(entry, "oodle entry in zip not found");
+		await using var entryStream = entry.Open();
+		var filePath = Path.GetTempFileName();
+		await using var fs = File.Create(filePath);
+		await entryStream.CopyToAsync(fs);
+		return filePath;
 	}
 }
