@@ -59,7 +59,7 @@ public class Tests : IAsyncLifetime
 			throw new PlatformNotSupportedException("this test is not supported on the current platform");
 		}
 
-		const string baseUrl = "https://github.com/WorkingRobot/OodleUE/releases/download/2024-11-01-726/"; // 2.9.13
+		const string baseUrl = "https://github.com/WorkingRobot/OodleUE/releases/download/2025-07-31-1001/"; // 2.9.14
 		string url;
 		string entryName;
 
