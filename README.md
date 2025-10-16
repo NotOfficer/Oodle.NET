@@ -28,9 +28,6 @@ Install-Package Oodle.NET
 
 - Thin .NET wrapper over the native Oodle library
 - Span-based `Compress`/`Decompress` with array, pointer, and `nint` overloads
-- Exposes native entry points and `GetCompressedBufferSizeNeeded`
-- Enums for compressors and compression levels
-- Targets .NET 8/9, NuGet, MIT
 
 ---
 
