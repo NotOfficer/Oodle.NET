@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Authors>NotOfficer</Authors>
+    <Copyright>Copyright (c) 2025 NotOfficer</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+</Project>

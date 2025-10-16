@@ -1,40 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <RootNamespace>OodleDotNet</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
     <Description>A .NET wrapper for Oodle</Description>
     <PackageTags>oodle, compression</PackageTags>
-    <AssemblyVersion>2.1.0.0</AssemblyVersion>
-    <FileVersion>2.1.0.0</FileVersion>
     <Version>2.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>NotOfficer</Authors>
-    <Copyright>Copyright (c) 2024 NotOfficer</Copyright>
-    <NeutralLanguage>en</NeutralLanguage>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\icon.png" Pack="True" PackagePath="" Visible="False" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" Visible="false" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="" Visible="true" />
   </ItemGroup>
-
-  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-  </PropertyGroup>
 
 </Project>
