@@ -7,7 +7,10 @@ namespace OodleDotNet;
 /// </summary>
 public unsafe partial class Oodle : IDisposable
 {
-    private readonly nint _handle;
+    /// <summary>
+    /// Library handle for the current oodle instance
+    /// </summary>
+    public nint Handle { get; }
 
     /// <summary>
     /// Initializes via a native oodle library path
@@ -26,11 +29,11 @@ public unsafe partial class Oodle : IDisposable
     public Oodle(nint handle)
     {
         Util.ThrowIfNull(handle);
-        _handle = handle;
+        Handle = handle;
 
-        nint compressAddress = NativeLibrary.GetExport(_handle, "OodleLZ_Compress");
-        nint decompressAddress = NativeLibrary.GetExport(_handle, "OodleLZ_Decompress");
-        nint compressedBufferSizeNeeded = NativeLibrary.GetExport(_handle, "OodleLZ_GetCompressedBufferSizeNeeded");
+        nint compressAddress = NativeLibrary.GetExport(Handle, "OodleLZ_Compress");
+        nint decompressAddress = NativeLibrary.GetExport(Handle, "OodleLZ_Decompress");
+        nint compressedBufferSizeNeeded = NativeLibrary.GetExport(Handle, "OodleLZ_GetCompressedBufferSizeNeeded");
 
         CompressFunctionPointer = (delegate* unmanaged<OodleCompressor, void*, IntPtr, void*, OodleCompressionLevel, void*, void*, void*, void*, IntPtr, IntPtr>)compressAddress;
         DecompressFunctionPointer = (delegate* unmanaged<void*, IntPtr, void*, IntPtr, OodleFuzzSafe, OodleCheckCrc, OodleVerbosity, void*, IntPtr, void*, void*, void*, IntPtr, OodleDecodeThreadPhase, IntPtr>)decompressAddress;
@@ -39,8 +42,8 @@ public unsafe partial class Oodle : IDisposable
 
     private void ReleaseUnmanagedResources()
     {
-        if (_handle != nint.Zero)
-            NativeLibrary.Free(_handle);
+        if (Handle != nint.Zero)
+            NativeLibrary.Free(Handle);
     }
 
     /// <inheritdoc/>
