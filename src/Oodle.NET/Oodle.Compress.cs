@@ -18,7 +18,7 @@ public unsafe partial class Oodle
         fixed (byte* sourcePtr = source)
         fixed (byte* destPtr = dest)
         {
-            var sourceLen = (nint)source.Length;
+            nint sourceLen = source.Length;
             return CompressFunctionPointer(compressor, sourcePtr, sourceLen, destPtr, level, null, null, null, null, 0);
         }
     }

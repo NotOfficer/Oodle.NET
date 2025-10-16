@@ -28,9 +28,9 @@ public unsafe partial class Oodle : IDisposable
         Util.ThrowIfNull(handle);
         _handle = handle;
 
-        var compressAddress = NativeLibrary.GetExport(_handle, "OodleLZ_Compress");
-        var decompressAddress = NativeLibrary.GetExport(_handle, "OodleLZ_Decompress");
-        var compressedBufferSizeNeeded = NativeLibrary.GetExport(_handle, "OodleLZ_GetCompressedBufferSizeNeeded");
+        nint compressAddress = NativeLibrary.GetExport(_handle, "OodleLZ_Compress");
+        nint decompressAddress = NativeLibrary.GetExport(_handle, "OodleLZ_Decompress");
+        nint compressedBufferSizeNeeded = NativeLibrary.GetExport(_handle, "OodleLZ_GetCompressedBufferSizeNeeded");
 
         CompressFunctionPointer = (delegate* unmanaged<OodleCompressor, void*, IntPtr, void*, OodleCompressionLevel, void*, void*, void*, void*, IntPtr, IntPtr>)compressAddress;
         DecompressFunctionPointer = (delegate* unmanaged<void*, IntPtr, void*, IntPtr, OodleFuzzSafe, OodleCheckCrc, OodleVerbosity, void*, IntPtr, void*, void*, void*, IntPtr, OodleDecodeThreadPhase, IntPtr>)decompressAddress;

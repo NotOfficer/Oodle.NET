@@ -19,8 +19,8 @@ public unsafe partial class Oodle
         fixed (byte* sourcePtr = source)
         fixed (byte* destPtr = dest)
         {
-            var sourceLen = (nint)source.Length;
-            var destLen = (nint)dest.Length;
+            nint sourceLen = source.Length;
+            nint destLen = dest.Length;
             return DecompressFunctionPointer(sourcePtr, sourceLen, destPtr, destLen,
                 OodleFuzzSafe.Yes, OodleCheckCrc.No, OodleVerbosity.None, null, 0, null, null, null, 0, OodleDecodeThreadPhase.Unthreaded);
         }

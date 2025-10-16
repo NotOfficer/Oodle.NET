@@ -21,18 +21,18 @@ public class Tests : IAsyncLifetime
     public void CompressAndDecompress()
     {
         const OodleCompressor compressor = OodleCompressor.Kraken;
-        var randomString = GetRandomString(8192);
-        var randomStringBuffer = Encoding.ASCII.GetBytes(randomString);
+        string randomString = GetRandomString(8192);
+        byte[] randomStringBuffer = Encoding.ASCII.GetBytes(randomString);
 
-        var compressedBufferSize = _oodle.GetCompressedBufferSizeNeeded(compressor, randomStringBuffer.Length);
+        nint compressedBufferSize = _oodle.GetCompressedBufferSizeNeeded(compressor, randomStringBuffer.Length);
         Assert.NotEqual(0, compressedBufferSize);
 
-        var compressedBuffer = new byte[compressedBufferSize];
-        var compressedSize = (int)_oodle.Compress(compressor, OodleCompressionLevel.Max, randomStringBuffer, compressedBuffer);
+        byte[] compressedBuffer = new byte[compressedBufferSize];
+        int compressedSize = (int)_oodle.Compress(compressor, OodleCompressionLevel.Max, randomStringBuffer, compressedBuffer);
         Assert.NotEqual(0, compressedSize);
 
-        var decompressedBuffer = new byte[randomStringBuffer.Length];
-        var decompressedSize = (int)_oodle.Decompress(compressedBuffer.AsSpan(0, compressedSize), decompressedBuffer);
+        byte[] decompressedBuffer = new byte[randomStringBuffer.Length];
+        int decompressedSize = (int)_oodle.Decompress(compressedBuffer.AsSpan(0, compressedSize), decompressedBuffer);
         Assert.NotEqual(0, decompressedSize);
 
         Assert.Equal(decompressedSize, randomStringBuffer.Length);
@@ -91,7 +91,7 @@ public class Tests : IAsyncLifetime
         var entry = zip.GetEntry(entryName);
         ArgumentNullException.ThrowIfNull(entry, "oodle entry in zip not found");
         await using var entryStream = entry.Open();
-        var filePath = Path.GetTempFileName();
+        string filePath = Path.GetTempFileName();
         await using var fs = File.Create(filePath);
         await entryStream.CopyToAsync(fs);
         return filePath;
