@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="Oodle.NET.Tests/Oodle.NET.Tests.csproj" />
+  <Project Path="Oodle.NET/Oodle.NET.csproj" />
+</Solution>
