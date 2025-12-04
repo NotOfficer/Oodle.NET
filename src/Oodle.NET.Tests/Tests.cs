@@ -84,15 +84,15 @@ public class Tests : IAsyncLifetime
             UseCookies = true,
             AutomaticDecompression = DecompressionMethods.All
         });
-        using var response = await client.GetAsync(url);
+        using HttpResponseMessage response = await client.GetAsync(url);
         response.EnsureSuccessStatusCode();
-        await using var responseStream = await response.Content.ReadAsStreamAsync();
+        await using Stream responseStream = await response.Content.ReadAsStreamAsync();
         using var zip = new ZipArchive(responseStream, ZipArchiveMode.Read);
-        var entry = zip.GetEntry(entryName);
+        ZipArchiveEntry? entry = zip.GetEntry(entryName);
         ArgumentNullException.ThrowIfNull(entry, "oodle entry in zip not found");
-        await using var entryStream = entry.Open();
+        await using Stream entryStream = entry.Open();
         string filePath = Path.GetTempFileName();
-        await using var fs = File.Create(filePath);
+        await using FileStream fs = File.Create(filePath);
         await entryStream.CopyToAsync(fs);
         return filePath;
     }
