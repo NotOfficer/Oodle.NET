@@ -65,7 +65,7 @@ public class Tests : IAsyncLifetime
 
         if (OperatingSystem.IsWindows())
         {
-            url = baseUrl + "msvc.zip";
+            url = baseUrl + "clang-cl.zip";
             entryName = "bin/Release/oodle-data-shared.dll";
         }
         else if (OperatingSystem.IsLinux())
